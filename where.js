@@ -39,4 +39,21 @@
 
         return result;
     };
+
+    Array.prototype.orderBy = function(fields) {
+        fields = fields.split(/[\s;,]+/);
+
+        this.sort(function(a, b) {
+            for (var i = 0, l = fields.length; i != l; i++) {
+                var field = fields[i];
+
+                if (a[field] > b[field]) return 1;
+                if (a[field] < b[field]) return -1;
+            }
+
+            return 0;
+        });
+        
+        return this;
+    };
 })();
